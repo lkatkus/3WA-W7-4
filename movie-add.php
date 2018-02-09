@@ -4,7 +4,7 @@
     $pdo->exec('SET NAMES UTF8');
 
     $sql = "INSERT INTO movies(title,year,duration,rating,description,image,video)
-    VALUES('".$_POST['title']."','".$_POST['year']."','".$_POST['duration']."','".$_POST['rating']."','".$_POST['description']."','".$_POST['image']."','".$_POST['video']."')";
+    VALUES('".$_POST['title']."','".$_POST['year']."','".$_POST['duration']."','".$_POST['rating']."','".htmlentities($_POST['description'], ENT_QUOTES)."','".$_POST['image']."','".$_POST['video']."')";
 
     print_r($sql);
 

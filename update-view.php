@@ -58,6 +58,18 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="Genre" class="col-sm-2 col-form-label">Genre</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="genre">
+                                <option disabled selected>Select genre</option>
+                                <?php foreach ($genres as $genre): ?>
+                                    <option value="<?=$genre['id']?>"><?=$genre['title']?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="rating" class="col-sm-2 col-form-label">Trailer</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="video" name="video" placeholder="Link to trailer on Youtube" value="<?php if($movie['video']){echo htmlspecialchars($movie['video']);};?>">

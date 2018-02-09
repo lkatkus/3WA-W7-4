@@ -16,8 +16,7 @@
     //
     // move_uploaded_file($image['tmp_name'], $path);
 
-    $sql = "UPDATE movies SET title='".$_POST['title']."',"." year='".$_POST['year']."',"." duration='".$_POST['duration']."',"." rating='".$_POST['rating']."',"." description='".htmlspecialchars($_POST['description'])."',"." video='".$_POST['video']."'"." WHERE id='".$_POST['id']."'";
-    print_r($sql);
+    $sql = "UPDATE movies SET title='".$_POST['title']."',"." year='".$_POST['year']."',"." duration='".$_POST['duration']."',"." rating='".$_POST['rating']."',"." description='".htmlentities($_POST['description'], ENT_QUOTES)."',"." genre_id='".htmlentities($_POST['genre'], ENT_QUOTES)."',"." video='".$_POST['video']."'"." WHERE id='".$_POST['id']."'";
 
     $query = $pdo->prepare($sql);
     $query->execute();
