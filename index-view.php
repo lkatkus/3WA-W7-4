@@ -6,6 +6,9 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+
+        <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="js/script.js"></script>
     </head>
     <body>
 
@@ -16,15 +19,13 @@
                 </div>
 
                 <div class="col-6">
-                    <div class="align-middle">
+                    <div class="align-middle" style="position:relative">
                         <form class="" action="index.php" method="GET">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for..." name="search">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="submit">Go!</button>
-                                </span>
+                            <div class="input-group" >
+                                <input type="text" class="form-control" placeholder="Search for..." name="search" id="searchBar" autocomplete="off">
                             </div>
                         </form>
+                        <div style="width:100%; position:absolute; background-color:white; z-index:2; border:solid 1px grey" id="searchDemo"></div>
                     </div>
                 </div>
 
@@ -88,7 +89,12 @@
 
                     <button class="button btn-dark <?php if($page==$totalPages){echo 'd-none';}?>"type="button" name="button"><a href="index.php?page=<?php echo $page+1?><?php if(isset($_GET['perPage'])){echo '&perPage='.$_GET['perPage'];}?>">Next</a></button>
                 </div>
+            </div>
 
+            <div class="row">
+                <div class="col-12">
+                    <!-- <div id="searchDemo"></div> -->
+                </div>
             </div>
 
         </div>
