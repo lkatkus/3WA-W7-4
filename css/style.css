@@ -1,3 +1,11 @@
 textarea {
     resize: none;
 }
+
+#liveSearch{
+    width:100%;
+    position:absolute;
+    background-color:white;
+    z-index:2;
+    border:solid 1px grey
+}

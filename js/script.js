@@ -1,4 +1,5 @@
 
+// COMMENT FUNCTION
 function addComment(id){
 
     // GETTING DATA FROM FORM
@@ -20,14 +21,15 @@ function addComment(id){
             console.log(response);
         },
     });
-}
+};
 
+// GETTING ALL COMMENTS
 function showComments(id){
 
     let data = 'id='+id;
     let allComments;
 
-    // SENDING DATA WITH AJAX TO OTHER PHP
+    // GETTING CURRENT COMMETS DATA WITH AJAX
     $.ajax({
         method: "GET",
         url: "getcomments.php",
@@ -42,14 +44,17 @@ function showComments(id){
         dataType: "json",
         contentType: "application/json"
     });
-}
+};
 
+// SHOWING ALL COMMENTS
 function displayComments(movieComments){
 
+    // CLEANING COMMENT INPUT FORM
     $("#commentsContainer").empty();
     $('#commentAuthor').val("");
     $('#commentContent').val("");
 
+    // LOOPING THROUGH COMMENT OBJECT AND DISPLAYING ALL COMMENTS
     for(let i = 0; i < movieComments.length; i++){
         let commentContainer = $("<div></div>");
         $(commentContainer).addClass("comment");
@@ -63,16 +68,21 @@ function displayComments(movieComments){
         $(commentContainer).append(newSpan);
 
         $("#commentsContainer").append(commentContainer)
-    }
-}
+    };
+};
 
+// LIVE SEARCH
+// ADD EVENT LISTENER TO SEARCH BAR
 $(document).ready(function(){
     $('#searchBar').keyup(function(){
+        let liveSearch = $('#liveSearch');
         if($('#searchBar').val() == ''){
-            let demoDiv = $('#searchDemo');
-            demoDiv.empty();
+            liveSearch.addClass('d-none');
         }else{
+            liveSearch.removeClass('d-none');
             let data = 'search=' + $('#searchBar').val();
+
+            // GET AJAX DATA BASED ON INPUT AFTER EACH KEY ENTERED
             $.ajax({
                 method: "GET",
                 url: "search.php",
@@ -90,16 +100,17 @@ $(document).ready(function(){
     });
 });
 
+// LIVE SEARCH FUNCTION
 function displaySearch(searchResults){
+    let liveSearch = $('#liveSearch');
+    liveSearch.empty();
 
-    let demoDiv = $('#searchDemo');
-    demoDiv.empty();
-
+    // LOOPING THROUGH FOUND DATA AND DISPLAYING BELOW SEARCH BAR
     for(let i = 0; i < searchResults.length; i++){
         let newResult = $('<div style="padding:10px"></div>');
         let newLink = $('<a href="movie.php?id='+searchResults[i].id+'"></a>')
         $(newLink).text(searchResults[i].title);
         $(newResult).append(newLink);
-        $(demoDiv).append(newResult);
+        $(liveSearch).append(newResult);
     }
-}
+};

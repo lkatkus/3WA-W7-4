@@ -19,13 +19,11 @@
                 </div>
 
                 <div class="col-6">
-                    <div class="align-middle" style="position:relative">
-                        <form class="" action="index.php" method="GET">
-                            <div class="input-group" >
-                                <input type="text" class="form-control" placeholder="Search for..." name="search" id="searchBar" autocomplete="off">
-                            </div>
-                        </form>
-                        <div style="width:100%; position:absolute; background-color:white; z-index:2; border:solid 1px grey" id="searchDemo"></div>
+                    <div class="align-middle position-relative">
+                        <div class="input-group" >
+                            <input type="text" class="form-control" placeholder="Search for..." name="search" id="searchBar" autocomplete="off">
+                        </div>
+                        <div class="d-none" id="liveSearch"></div>
                     </div>
                 </div>
 
@@ -44,7 +42,7 @@
                 <div class="col-12 py-1">
                     <?php foreach ($genres as $genre): ?>
 
-                        <a class="btn btn-outline-secondary" href="index.php?genre=<?= $genre['id'] ?>"><?= $genre['title'] ?> </a>
+                        <a class="btn btn-outline-secondary" href="index.php?genre=<?= $genre['id'] ?><?php if(isset($_GET['perPage'])){echo '&perPage='.$_GET['perPage'];}?>"><?= $genre['title'] ?> </a>
 
                     <?php endforeach; ?>
                 </div>
@@ -78,22 +76,16 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
-                    <button class="button btn-dark <?php if($page==1){echo 'd-none';}?>"type="button" name="button"><a href="index.php?page=<?php echo $page-1?><?php if(isset($_GET['perPage'])){echo '&perPage='.$_GET['perPage'];}?>">Previous</a></button>
+                <div class="col-12 text-center">
+                    <button class="button btn-outline-secondary <?php if($page==1){echo 'd-none';}?>"type="button" name="button"><a href="index.php?page=<?php echo $page-1?><?php if(isset($_GET['perPage'])){echo '&perPage='.$_GET['perPage'];}?>">Previous</a></button>
 
                     <?php if($totalPages > 1): ?>
                         <?php for($i = 1; $i <= $totalPages; $i++): ?>
-                            <button class="button <?php if($page == $i){echo 'btn-secondary';}else{echo 'btn-dark';}; ?>" name="button"><a href="index.php?page=<?php echo $i; ?><?php if(isset($_GET['perPage'])){echo '&perPage='.$_GET['perPage'];}?>"><?php echo $i; ?></a></button>
+                            <button class="button <?php if($page == $i){echo 'btn-dark';}else{echo 'btn-outline-secondary';}; ?>" name="button"><a href="index.php?page=<?php echo $i; ?><?php if(isset($_GET['perPage'])){echo '&perPage='.$_GET['perPage'];}?>"><?php echo $i; ?></a></button>
                         <?php endfor; ?>
                     <?php endif;?>
 
-                    <button class="button btn-dark <?php if($page==$totalPages){echo 'd-none';}?>"type="button" name="button"><a href="index.php?page=<?php echo $page+1?><?php if(isset($_GET['perPage'])){echo '&perPage='.$_GET['perPage'];}?>">Next</a></button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <!-- <div id="searchDemo"></div> -->
+                    <button class="button btn-outline-secondary <?php if($page==$totalPages){echo 'd-none';}?>"type="button" name="button"><a href="index.php?page=<?php echo $page+1?><?php if(isset($_GET['perPage'])){echo '&perPage='.$_GET['perPage'];}?>">Next</a></button>
                 </div>
             </div>
 
